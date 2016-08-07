@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="chatroom">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>聊天室</title>
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+</head>
+
+<body>
+    <nav>
+        <div class="navbar navbar-inverse">
+            <div class="navbar-header">
+                <div class="navbar-brand">
+                    聊天室
+                </div>
+            </div>
+        </div>
+    </nav>
+    <div class="conatainer" ng-view>
+
+    </div>
+
+
+    <script src="lib/jquery/dist/jquery.js" charset="utf-8"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
+    <script src="lib/angular/angular.js" charset="utf-8"></script>
+    <script src="lib/angular-route/angular-route.js" charset="utf-8"></script>
+    <script src="lib/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
+    <script src="lib/moment/moment.js" charset="utf-8"></script>
+    <script src="lib/moment/locale/zh-cn.js"></script>
+    <script src="lib/angular-moment/angular-moment.js"></script>
+
+    <script src="app.js"></script>
+    <script src="controller/LoginCtrl.js"></script>
+    <script src="controller/RoomsCtrl.js"></script>
+
+    </script>
+
+
+</body>
+
+</html>
