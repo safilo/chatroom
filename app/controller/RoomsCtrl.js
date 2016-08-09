@@ -1,30 +1,34 @@
-angular.module('chatroom').controller('RoomsCtrl', function($scope, $http, $location) {
-    // rooms根据关键字过滤之后显示的房间, __rooms原始的房间
+angular.module('chatroom').controller('RoomsCtrl',['$scope','$http','$location',function($scope,$http,$location){
     $scope.rooms = $scope._rooms = [];
+
     $http({
-        url: '/room/list',
-        method: "GET",
-    }).success(function(rooms) {
+        url:'/room/list',
+        method:'get'
+    }).success(function(rooms){
         $scope.rooms = $scope._rooms = rooms;
-    }).error(function(err) {
-        console.log(err);
-    });
+    }).error(function(result){
+        console.error(result);
+    })
 
-    $scope.createRoom = function() {
-        $http({
-            url: '/room/add',
-            method: 'POST',
-            data: {
-                name: $scope.keyword
-            }
-        }).success(function(data) {
-            $scope.rooms.push(data);
-        }).error(function(err) {
-            console.log(err);
+    $scope.filter = function(){
+        $scope.rooms = $scope._rooms.filter(function(room){
+            return room.name.indexOf($scope.keyword)!=-1;
         });
-    };
+    }
+    $scope.createRoom = function(){
+        $http({
+            url:'/room/add',
+            method:'POST',
+            data:{name:$scope.keyword}
+        }).success(function(room){
+            $scope._rooms.push(room);
+            $scope.filter();
+        }).error(function(result){
 
-    $scope.join = function(roomId) {
-        $location.path('/rooms/' + roomId);
-    };
-});
+        });
+    }
+
+    $scope.join = function(roomId){
+        $location.path("/rooms/"+roomId);
+    }
+}]);

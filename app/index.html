@@ -1,45 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" ng-app="chatroom">
-
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>聊天室</title>
-    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css" media="screen" title="no title" charset="utf-8">
+    <!-- build:css /css/vendor.css -->
+    <link rel="stylesheet" href="lib/bootstrap/dist/css/bootstrap.css">
+    <!-- endbuild -->
 </head>
-
 <body>
-    <nav>
-        <div class="navbar navbar-inverse">
-            <div class="navbar-header">
-                <div class="navbar-brand">
-                    聊天室
-                </div>
-            </div>
+<nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="{{user.email?'#/rooms':'javascript:void(0)'}}">聊天室</a>
         </div>
-    </nav>
-    <div class="conatainer" ng-view>
 
+        <div>
+            <ul class="nav navbar-nav navbar-right" ng-show="user">
+                <li><a href="javascript:void(0)"><img style="width:30px;height:30px;" class="img-rounded" ng-src="{{user.avatar}}" alt="{{user.email}}"></a></li>
+                <li><a href="javascript:void(0)">{{user.email}}</a></li>
+            </ul>
+        </div>
     </div>
+</nav>
+<div class="container" ng-view>
 
-
-    <script src="lib/jquery/dist/jquery.js" charset="utf-8"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
-    <script src="lib/angular/angular.js" charset="utf-8"></script>
-    <script src="lib/angular-route/angular-route.js" charset="utf-8"></script>
-    <script src="lib/bootstrap/dist/js/bootstrap.js" charset="utf-8"></script>
-    <script src="lib/moment/moment.js" charset="utf-8"></script>
-    <script src="lib/moment/locale/zh-cn.js"></script>
-    <script src="lib/angular-moment/angular-moment.js"></script>
-
-    <script src="app.js"></script>
-    <script src="controller/LoginCtrl.js"></script>
-    <script src="controller/RoomsCtrl.js"></script>
-
-    </script>
-
-
+</div>
 </body>
-
+<script src="/socket.io/socket.io.js"></script>
+<!-- build:js /script/vendor.js -->
+<script src="lib/jquery/dist/jquery.js"></script>
+<script src="lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-route/angular-route.js"></script>
+<script src="lib/moment/moment.js"></script>
+<script src="lib/moment/locale/zh-cn.js"></script>
+<script src="lib/angular-moment/angular-moment.js"></script>
+<!-- endbuild -->
+<!-- build:js /script/app.js -->
+<script src="app.js"></script>
+<script src="controller/LoginCtrl.js"></script>
+<script src="controller/RoomsCtrl.js"></script>
+<script src="controller/RoomCtrl.js"></script>
+<script src="directive/ctrlEnterBreakLine.js"></script>
+<script src="service/socket.js"></script>
+<!-- endbuild -->
 </html>

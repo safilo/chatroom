@@ -1,11 +1,15 @@
-angular.module('chatroom').controller('LoginCtrl', function($scope, $http, $location) {
-    $scope.login = function() {
+angular.module('chatroom').controller('LoginCtrl',['$scope','$http','$location',function($scope,$http,$location){
+    $scope.login = function(){
         $http({
-            url : '/user/login',
-            method : 'post',
-            data : { email : $scope.email}
-        }).success(function(user) {
+            url:'/user/login',
+            method:'POST',
+            data:{email:$scope.email}
+        }).success(function(user){
+            $scope.$emit('login', user);
             $location.path('/rooms');
+        }).error(function(data){
+            console.error(data);
+            $location.path('/login');
         });
-    };
-});
+    }
+}]);
