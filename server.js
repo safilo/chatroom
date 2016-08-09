@@ -73,7 +73,8 @@ io.on('connection',function(socket){
                 });
                 io.in(currentRoom).emit('userDeleted',currentUser);
             });
-        })
+        });
     });
 
 });
+module.exports = {};
